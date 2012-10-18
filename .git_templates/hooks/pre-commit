@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Modified from kevincal version in https://gist.github.com/810399
+
+# The following is a list of the most common PEP 8 errors and warnings; to
+# skip some just list them to the IGNORE variable (comma separated):
+# E111 indentation is not a multiple of four
+# E201 whitespace after '('
+# E202 whitespace before ')'
+# E203 whitespace before ','
+# E211 whitespace before '('
+# E221 multiple spaces before operator
+# E222 multiple spaces after operator
+# E225 missing whitespace around operator
+# E231 missing whitespace after ':'
+# E251 no spaces around keyword / parameter equals
+# E261 at least two spaces before inline comment
+# E271 multiple spaces after keyword
+# E272 multiple spaces before keyword
+# E301 expected 1 blank line, found 0
+# E302 expected 2 blank lines, found 1
+# E303 too many blank lines (3)
+# E401 multiple imports on one line
+# E501 line too long (80 characters)
+# E701 multiple statements on one line (colon)
+# W291 trailing whitespace
+# W293 blank line contains whitespace
+# W391 blank line at end of file
+# W601 .has_key() is deprecated, use 'in'
+# W602 deprecated form of raising exception
+# W604 backticks are deprecated, use 'repr()'
+
+#IGNORE=E501,E701
+
+FILES=$(git diff --cached --name-status | grep -v ^D | awk '$1 $2 { print $2}' | grep -e .py$)
+if [ -n "$FILES" ]; then
+    # Stash any changes to the working tree that are not going to be committed
+    git stash -q --keep-index
+    #pep8 --ignore $IGNORE $FILES
+    pep8 --show-source $FILES
+    is_pep8=$?
+    # Unstash changes to the working tree that we had stashed
+    git stash pop -q
+fi
+#echo "is_pep8 = $is_pep8 "
+exit $is_pep8
