@@ -2,6 +2,10 @@
 	name = Write Your Name Here
 	email = youraddress@example.com
 
+[github]
+	user = your-github-account
+	token = your-github-token
+
 [core]
 	autocrlf = false
 	safecrlf = true
