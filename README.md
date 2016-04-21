@@ -23,3 +23,7 @@ Enter `dd-git` directory. Execute `install.sh` script:
 
     $ cd dd-git
     $ ./install.sh
+
+Edit `~/.gitconfig` to set your name, email address and GitHub username.
+
+    $ vi ~/.gitconfig
