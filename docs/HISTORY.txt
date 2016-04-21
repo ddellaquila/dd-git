@@ -1,6 +1,17 @@
 Changelog
 =========
 
+
+1.1 (2016-04-21)
+----------------
+
+- Nicer history alias
+- Add changelog alias
+- Add last-st alias
+- Don't reset author date on commit amend
+- More color definitions
+
+
 1.0 (2012-10-18)
 ----------------
 
