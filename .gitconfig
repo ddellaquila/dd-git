@@ -16,12 +16,14 @@
     st = status
     co = checkout
     ci = commit
-    ca = commit --reset-author --amend
+    ca = commit --amend
     unmodify = checkout --
     unstage = reset HEAD --
     br = branch
     last = log -1 --format=fuller HEAD
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    last-st = log -1 --format=fuller HEAD --name-status
+    changelog =  log --pretty=format:\"%s [%an]\" --graph --date=short
+    history = log --graph --decorate --pretty=format:'%C(white)%h - %ai | %s - [%an]%C(reset) %C(bold yellow)%d%C(reset)'
     type = cat-file -t
     dump = cat-file -p
     tag-list = tag -l -n1
@@ -34,6 +36,32 @@
     templatedir = ~/.git_templates
 
 [color]
+    ui = always
     diff = auto
     status = auto
     branch = auto
+[color "branch"]
+    current = yellow bold
+    local = yellow
+    remote = green
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    untracked = bold red
+    changed = bold yellow
+    added = green
+[color "grep"]
+    match = normal
+[color "interactive"]
+    prompt = normal
+    header = normal
+    help = normal
+    error = normal
+
+[push]
+    default = simple
+
+[instaweb]
